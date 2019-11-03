@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func get_input(delta: float) -> void:
-		# Is touching wall or floor
+	# Is touching wall or floor
 	var is_touching = self.is_on_floor() or self.is_on_wall()
 	var curr_mvmt_accl = movement_acceleration if is_touching else movement_acceleration / 2
 	
