@@ -11,9 +11,11 @@ var acceleration: Vector2
 export var max_movement_speed: int = 600
 # FIXME: find better name
 export var movement_acceleration: int = 60
-
 export var max_fall_speed: int = 300
 export var fall_acceleration: int = 300
+
+var can_jump: bool = false
+export var jump_velocity: int = 1200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +38,14 @@ func get_input(delta: float) -> void:
 			
 	velocity.y = min(velocity.y + fall_acceleration, max_fall_speed)
 	
-	if is_on_floor(): print("ya")
+	if Input.is_action_pressed("ui_up"):
+		if can_jump:
+			velocity.y = -jump_velocity
+	
+	if is_on_floor() or is_on_wall():
+		can_jump = true
+	else:
+		can_jump = false
 	
 func _physics_process(delta: float):
 	get_input(delta)
