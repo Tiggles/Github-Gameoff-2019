@@ -12,7 +12,7 @@ export var max_movement_speed: int = 600
 # FIXME: find better name
 export var movement_acceleration: int = 60
 export var max_fall_speed: int = 500
-export var fall_acceleration: int = 100
+export var fall_acceleration: int = 60
 
 # Jumping
 var can_jump: bool = false
@@ -29,9 +29,7 @@ func _process(delta: float) -> void:
 func get_input(delta: float) -> void:
 		# Is touching wall or floor
 	var is_touching = self.is_on_floor() or self.is_on_wall()
-	var curr_mvmt_accl = movement_acceleration
-	if !is_touching:
-		curr_mvmt_accl = curr_mvmt_accl / 2
+	var curr_mvmt_accl = movement_acceleration if is_touching else movement_acceleration / 2
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = max(min(velocity.x + curr_mvmt_accl, max_movement_speed), -max_movement_speed)
