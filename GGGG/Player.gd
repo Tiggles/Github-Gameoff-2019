@@ -52,6 +52,7 @@ func get_input(delta: float) -> void:
 	velocity.y = min(velocity.y + fall_acceleration, max_fall_speed)
 	
 	if Input.is_action_pressed("ui_up"):
+		# Walljump might be solvable more elegantly by using Shape2D Node
 		if can_wall_jump and velocity.x != 0:
 			if moving_left:
 				velocity.y = -jump_velocity * 0.8
