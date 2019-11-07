@@ -10,8 +10,8 @@ extends KinematicBody2D
 var velocity: Vector2
 export var max_movement_speed: int = 600
 # FIXME: find better name
-export var movement_acceleration: int = 60
-export var max_fall_speed: int = 500
+export var movement_acceleration: int = 80
+export var max_fall_speed: int = 600
 export var fall_acceleration: int = 60
 var moving_left = false
 
