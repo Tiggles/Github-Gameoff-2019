@@ -17,6 +17,8 @@ var moving_left = false
 
 # Jumping
 export var jump_velocity: int = 1200
+# Intended to be upgradeable
+export var jump_factor: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,7 +51,7 @@ func get_input(delta: float) -> void:
 	velocity.y = min(velocity.y + fall_acceleration, max_fall_speed)
 	
 	if self.is_on_floor():
-		velocity.y = -jump_velocity
+		velocity.y = -jump_velocity * jump_factor
 		
 	moving_left = velocity.x < 0
 	$Sprite.flip_h = true if moving_left else false

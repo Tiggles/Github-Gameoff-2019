@@ -9,6 +9,7 @@ extents = Vector2( 10.4465, 25.9614 )
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
+jump_factor = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
