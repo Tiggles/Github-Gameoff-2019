@@ -72,6 +72,7 @@ tile_data = PoolIntArray( 589847, 1, 0, 655380, 1, 0, 720913, 1, 0, 786446, 1, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 169.053 )
+fall_acceleration = 20
 jump_factor = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
