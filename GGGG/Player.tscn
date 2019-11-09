@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://pogo_character.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32.189, 31.8149 )
+extents = Vector2( 10.4465, 25.9614 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -14,4 +14,5 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )

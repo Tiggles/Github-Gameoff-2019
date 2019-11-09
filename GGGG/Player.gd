@@ -16,9 +16,7 @@ export var fall_acceleration: int = 60
 var moving_left = false
 
 # Jumping
-var can_jump: bool = false
 export var jump_velocity: int = 1200
-var can_wall_jump = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +31,6 @@ func get_input(delta: float) -> void:
 	var is_touching = self.is_on_floor() or self.is_on_wall()
 	
 	var curr_mvmt_accl = movement_acceleration if is_touching else movement_acceleration / 2
-	can_wall_jump = self.is_on_wall() and !self.is_on_floor()
 	
 	
 	if is_on_ceiling():
@@ -51,25 +48,11 @@ func get_input(delta: float) -> void:
 			
 	velocity.y = min(velocity.y + fall_acceleration, max_fall_speed)
 	
-	if Input.is_action_just_pressed("ui_jump"):
-		# Walljump might be solvable more elegantly by using Shape2D Node
-		if can_wall_jump and !self.is_on_floor():
-			if moving_left:
-				velocity.y = -jump_velocity * 0.8
-				velocity.x = 900
-			else:
-				velocity.y = -jump_velocity * 0.8
-				velocity.x = -900
-		elif can_jump:
-			velocity.y = -jump_velocity
-	
-	# standard jumping or wall jump
-	if is_touching:
-		can_jump = true
-	else:
-		can_jump = false
+	if self.is_on_floor():
+		velocity.y = -jump_velocity
 		
 	moving_left = velocity.x < 0
+	$Sprite.flip_h = true if moving_left else false
 	
 func _physics_process(delta: float):
 	get_input(delta)
