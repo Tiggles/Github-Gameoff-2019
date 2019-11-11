@@ -85,7 +85,11 @@ func update_movement_parameters(delta: float) -> void:
 
 func _physics_process(delta: float):
 	get_input(delta)
+	check_exit()
 	update_movement_parameters(delta)
 	# delta is applied inside function
 	move_and_slide(velocity, Vector2(0, -1))
 
+func check_exit() -> void:
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().quit()
