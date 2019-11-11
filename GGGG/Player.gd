@@ -54,12 +54,8 @@ func get_input(delta: float) -> void:
 
 
 func update_movement_parameters(delta: float) -> void:
-	# Is touching wall or floor
-	#var is_touching = self.is_on_floor() or self.is_on_wall()
-	#var curr_mvmt_accl = movement_acceleration if is_touching else movement_acceleration / 2
-
-	#if is_on_ceiling():
-	#	self.velocity.y = 1
+	if is_on_ceiling():
+		self.velocity.y = 1
 
 	if horizontal_moving_direction == MOVING_RIGHT:
 		velocity.x = max(min(velocity.x + horizontal_acceleration, -max_movement_speed), max_movement_speed)
