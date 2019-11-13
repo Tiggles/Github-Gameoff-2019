@@ -82,3 +82,5 @@ jump_factor = 1
 current = true
 
 [node name="EnemyFarmer" parent="." instance=ExtResource( 3 )]
+position = Vector2( 187.462, 613.5 )
+default_moving_direction = -1
