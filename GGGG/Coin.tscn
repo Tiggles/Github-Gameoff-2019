@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://coin.png" type="Texture" id=1]
+[ext_resource path="res://Coin.gd" type="Script" id=1]
+[ext_resource path="res://coin.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28.8895, 30.5244 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Standard"
-length = 2.0
+[sub_resource type="Animation" id=2]
+resource_name = "bling"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -16,23 +16,25 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 63 ]
 }
 
 [node name="Coin" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 hframes = 64
+frame = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Standard"
-playback_process_mode = 2
-playback_speed = 2.0
-anims/Standard = SubResource( 1 )
+anims/bling = SubResource( 2 )

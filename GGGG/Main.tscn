@@ -84,7 +84,9 @@ current = true
 
 [node name="EnemyFarmer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 187.462, 613.5 )
+motion/sync_to_physics = false
 default_moving_direction = -1
 
 [node name="Coin" parent="." instance=ExtResource( 4 )]
-position = Vector2( 342.721, 387.149 )
+position = Vector2( 349, 381 )
+input_pickable = true
