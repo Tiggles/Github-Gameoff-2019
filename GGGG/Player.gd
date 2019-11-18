@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
+# Stats
+var health = 3
+var coin_count = 0
+var can_take_damage = true
 
 # General movement
 var velocity: Vector2
@@ -82,14 +81,37 @@ func update_movement_parameters(delta: float) -> void:
 		velocity.y = -jump_velocity * jump_factor
 		current_jumps = 0
 
-
 func _physics_process(delta: float):
 	get_input(delta)
 	check_exit()
 	update_movement_parameters(delta)
 	# delta is applied inside function
 	move_and_slide(velocity, Vector2(0, -1))
+	handle_collisions()
+	
+
+func handle_collisions() -> void:
+	for i in get_slide_count():
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		# FIXME There has to be more elegant way of handling collisions
+		# e.g. going by masks instead? Or connecting?
+		match collision.collider.name:
+			"EnemyFarmer":
+				health -= 1
+				can_take_damage = false
+				$DamageCountDown.start(-1)
+				# Handle if enemy to left, throw player right and vice versa
+			"Coin":
+				# Find and remove coin from list
+				# TODO
+				# Add coin to player count
+				coin_count += 1
+			
 
 func check_exit() -> void:
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+
+
+func _on_DamageCountDown_timeout():
+	can_take_damage = true
