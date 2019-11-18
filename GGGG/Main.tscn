@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EnemyFarmer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -75,6 +76,7 @@ tile_data = PoolIntArray( -655378, 2, 0, -655377, 2, 0, -655376, 2, 0, -655375, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 169.053 )
+collision_mask = 15
 fall_acceleration = 20
 jump_velocity = 600
 jump_factor = 1
@@ -90,3 +92,8 @@ default_moving_direction = -1
 [node name="Coin" parent="." instance=ExtResource( 4 )]
 position = Vector2( 349, 381 )
 input_pickable = true
+collision_layer = 8
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 5 )]
