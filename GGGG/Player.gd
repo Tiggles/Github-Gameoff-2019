@@ -1,7 +1,13 @@
 extends KinematicBody2D
 
+# Signals
+signal damage_taken
+signal health_received
+signal coin_picked
+
+
 # Stats
-var health = 3
+var health = 5
 var coin_count = 0
 var can_take_damage = true
 
@@ -94,16 +100,18 @@ func handle_collisions() -> void:
 	for i in get_slide_count():
 		var collision: KinematicCollision2D = get_slide_collision(i)
 		# FIXME There has to be more elegant way of handling collisions
-		# e.g. going by masks instead? Or connecting?
+		# e.g. going by masks instead? Or connecting? Groups?
 		match collision.collider.name:
 			"EnemyFarmer":
 				health -= 1
 				can_take_damage = false
 				$DamageCountDown.start(-1)
+				emit_signal("damage_taken")
 				# Handle if enemy to left, throw player right and vice versa
 			"Coin":
 				# Find and remove coin from list
 				# TODO
+				emit_signal("coin_picked", coin_count)
 				# Add coin to player count
 				coin_count += 1
 			
