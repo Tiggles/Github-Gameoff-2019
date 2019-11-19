@@ -4,7 +4,7 @@
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tilemap.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Gem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EnemyFarmer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 
@@ -88,9 +88,9 @@ jump_factor = 1
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
-[node name="Coins" type="Node" parent="."]
+[node name="Gems" type="Node" parent="."]
 
-[node name="Coin" parent="Coins" instance=ExtResource( 5 )]
+[node name="Gem" parent="Gems" instance=ExtResource( 5 )]
 position = Vector2( 349, 381 )
 input_pickable = true
 collision_layer = 8

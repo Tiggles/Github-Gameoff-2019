@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Coin.gd" type="Script" id=1]
-[ext_resource path="res://coin.png" type="Texture" id=2]
+[ext_resource path="res://Gem.gd" type="Script" id=1]
+[ext_resource path="res://gem.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28.8895, 30.5244 )
+extents = Vector2( 8.33554, 23.5815 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bling"
+length = 0.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -16,22 +17,23 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 63 ]
+"values": [ 0, 3 ]
 }
 
-[node name="Coin" type="KinematicBody2D"]
+[node name="Gem" type="KinematicBody2D"]
+position = Vector2( -0.291992, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
-hframes = 64
-frame = 25
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
