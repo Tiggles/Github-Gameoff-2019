@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Gem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EnemyFarmer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://EnemyBird.tscn" type="PackedScene" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -102,11 +103,10 @@ position = Vector2( 187.462, 613.5 )
 motion/sync_to_physics = false
 default_moving_direction = -1
 
+[node name="EnemyBird" parent="Node" instance=ExtResource( 7 )]
+position = Vector2( 676.871, 171.418 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 7 )]
-
-[node name="Gem" parent="." instance=ExtResource( 5 )]
-position = Vector2( 125.108, 394.251 )
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 8 )]
 [connection signal="damage_taken" from="Player" to="." method="_on_Player_damage_taken" binds= [ 1 ]]
-[connection signal="gem_collected" from="Player" to="." method="_on_Player_gem_collected"]
