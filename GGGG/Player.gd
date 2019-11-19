@@ -3,12 +3,12 @@ extends KinematicBody2D
 # Signals
 signal damage_taken
 signal health_received
-signal coin_picked
+signal gem_collected
 
 
 # Stats
 var health = 5
-var coin_count = 0
+var gem_count = 0
 var can_take_damage = true
 
 # General movement
@@ -108,12 +108,10 @@ func handle_collisions() -> void:
 				$DamageCountDown.start(-1)
 				emit_signal("damage_taken")
 				# Handle if enemy to left, throw player right and vice versa
-			"Coin":
-				# Find and remove coin from list
-				# TODO
-				emit_signal("coin_picked", coin_count)
-				# Add coin to player count
-				coin_count += 1
+			"Gem":
+				collision.collider.queue_free()
+				gem_count += 1
+				emit_signal("gem_collected", gem_count)
 			
 
 func check_exit() -> void:
