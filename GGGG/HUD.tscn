@@ -42,13 +42,13 @@ margin_top = 18.0
 margin_right = 42.0
 margin_bottom = 32.0
 
-[node name="Coin" parent="HBoxContainer/Bars/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Gem" parent="HBoxContainer/Bars/VBoxContainer" instance=ExtResource( 2 )]
 position = Vector2( 57.1078, 7.31608 )
 scale = Vector2( 0.5, 0.5 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="CoinCount" type="Label" parent="HBoxContainer/Bars/VBoxContainer"]
+[node name="GemCount" type="Label" parent="HBoxContainer/Bars/VBoxContainer"]
 margin_right = 42.0
 margin_bottom = 14.0
 text = "0"

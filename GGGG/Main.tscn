@@ -105,5 +105,8 @@ default_moving_direction = -1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 7 )]
-[connection signal="coin_picked" from="Player" to="." method="_on_Player_coin_picked"]
+
+[node name="Gem" parent="." instance=ExtResource( 5 )]
+position = Vector2( 125.108, 394.251 )
 [connection signal="damage_taken" from="Player" to="." method="_on_Player_damage_taken" binds= [ 1 ]]
+[connection signal="gem_collected" from="Player" to="." method="_on_Player_gem_collected"]
