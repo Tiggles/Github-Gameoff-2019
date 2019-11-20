@@ -95,6 +95,7 @@ current = true
 position = Vector2( 349, 381 )
 input_pickable = true
 collision_layer = 8
+collision_mask = 0
 
 [node name="Node" type="Node" parent="."]
 
@@ -110,3 +111,4 @@ position = Vector2( 676.871, 171.418 )
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 8 )]
 [connection signal="damage_taken" from="Player" to="." method="_on_Player_damage_taken" binds= [ 1 ]]
+[connection signal="gem_collected" from="Player" to="." method="_on_Player_gem_collected"]
