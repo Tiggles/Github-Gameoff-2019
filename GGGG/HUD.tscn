@@ -19,44 +19,25 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 56.0
 
-[node name="LifeContainer" type="HBoxContainer" parent="VBoxContainer"]
-editor/display_folded = true
+[node name="HeartContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 984.0
-margin_bottom = 14.0
-
-[node name="LifeText" type="Label" parent="VBoxContainer/LifeContainer"]
-margin_right = 27.0
-margin_bottom = 14.0
-text = "Life:"
-
-[node name="HeartContainer" type="HBoxContainer" parent="VBoxContainer/LifeContainer"]
-margin_left = 31.0
-margin_right = 31.0
-margin_bottom = 14.0
 
 [node name="ScoreContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 18.0
+margin_top = 4.0
 margin_right = 984.0
-margin_bottom = 50.0
-
-[node name="ScoreText" type="Label" parent="VBoxContainer/ScoreContainer"]
-margin_top = 9.0
-margin_right = 39.0
-margin_bottom = 23.0
-text = "Score:"
-
-[node name="ScoreCount" type="Label" parent="VBoxContainer/ScoreContainer"]
-margin_left = 43.0
-margin_top = 9.0
-margin_right = 51.0
-margin_bottom = 23.0
-text = "0"
+margin_bottom = 36.0
 
 [node name="GemIcon" parent="VBoxContainer/ScoreContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 55.0
-margin_right = 66.0
+margin_right = 11.0
 margin_bottom = 32.0
+
+[node name="ScoreCount" type="Label" parent="VBoxContainer/ScoreContainer"]
+margin_left = 15.0
+margin_top = 9.0
+margin_right = 23.0
+margin_bottom = 23.0
+text = "0"

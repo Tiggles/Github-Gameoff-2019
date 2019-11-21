@@ -13,7 +13,7 @@ var heart_shaped_box = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	heart_shaped_box = $VBoxContainer/LifeContainer/HeartContainer
+	heart_shaped_box = $VBoxContainer/HeartContainer
 	scoreCounter = $VBoxContainer/ScoreContainer/ScoreCount
 
 func update_score(score: int):
@@ -25,6 +25,6 @@ func update_life(lifecount: int):
 		heart_shaped_box.remove_child(heart)
 		heart.queue_free()
 	
-	for i in range(lifecount):
+	for _i in range(lifecount):
 		var heart = Heart.instance()
 		heart_shaped_box.add_child(heart)
