@@ -57,6 +57,8 @@ func get_input(delta: float) -> void:
 	
 	boost_up = Input.is_action_just_pressed("ui_jump")
 
+func get_health() -> int:
+	return health
 
 func update_movement_parameters(delta: float) -> void:
 	if is_on_ceiling():
