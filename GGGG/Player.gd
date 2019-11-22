@@ -114,6 +114,8 @@ func handle_collisions() -> void:
 				collision.collider.queue_free()
 				gem_count += 1
 				emit_signal("gem_collected", gem_count)
+			"TileMap":
+				$AnimationPlayer.play("ground_collision")
 			
 
 func check_exit() -> void:
