@@ -1,14 +1,15 @@
-extends KinematicBody2D
+extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+class_name Gem
+
+var taken = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("bling")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Gem_body_entered(body):
+	if not taken and body is Player:
+		body.collected_gem()
+		taken = true
+		hide()
