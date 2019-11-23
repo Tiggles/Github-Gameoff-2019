@@ -23,12 +23,11 @@ tracks/0/keys = {
 "values": [ 0, 3 ]
 }
 
-[node name="Gem" type="KinematicBody2D"]
+[node name="Gem" type="Area2D"]
 position = Vector2( -0.291992, 0 )
+collision_layer = 8
+collision_mask = 1024
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -40,3 +39,4 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bling = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]

@@ -1,13 +1,14 @@
 extends KinematicBody2D
 
-# Signals
-signal damage_taken
-signal health_received
-signal gem_collected
+class_name Player # you can use is Player to check if a unknown object is a Player
 
+# Signals
+signal damage_taken(damage_count)
+signal health_received
+signal gem_collected(gem_count)
 
 # Stats
-var health = 5
+export (int) var health = 5
 var gem_count = 0
 var can_take_damage = true
 
@@ -35,17 +36,12 @@ export var jump_velocity: int = 800
 # Intended to be upgradeable
 export var jump_factor: int = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-	
-func _input(event):
-	pass
-	
 var boost_up: bool = false
+var floor_normal = Vector2(0, -1)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func get_input(delta: float) -> void:
+func get_input(_delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		horizontal_moving_direction = MOVING_RIGHT
 		$Sprite.flip_h = false
@@ -57,10 +53,8 @@ func get_input(delta: float) -> void:
 	
 	boost_up = Input.is_action_just_pressed("ui_jump")
 
-func get_health() -> int:
-	return health
 
-func update_movement_parameters(delta: float) -> void:
+func update_movement_parameters(_delta: float) -> void:
 	if is_on_ceiling():
 		self.velocity.y = 1
 
@@ -89,14 +83,15 @@ func update_movement_parameters(delta: float) -> void:
 		velocity.y = -jump_velocity * jump_factor
 		current_jumps = 0
 
+
 func _physics_process(delta: float):
 	get_input(delta)
 	check_exit()
 	update_movement_parameters(delta)
 	# delta is applied inside function
-	move_and_slide(velocity, Vector2(0, -1))
+	var _c = move_and_slide(velocity, floor_normal)
 	handle_collisions()
-	
+
 
 func handle_collisions() -> void:
 	for i in get_slide_count():
@@ -110,13 +105,14 @@ func handle_collisions() -> void:
 				$DamageCountDown.start(-1)
 				emit_signal("damage_taken")
 				# Handle if enemy to left, throw player right and vice versa
-			"Gem":
-				collision.collider.queue_free()
-				gem_count += 1
-				emit_signal("gem_collected", gem_count)
 			"TileMap":
 				$AnimationPlayer.play("ground_collision")
-			
+
+
+func collected_gem():
+	gem_count += 1
+	self.emit_signal("gem_collected", gem_count)
+
 
 func check_exit() -> void:
 	if Input.is_action_pressed("ui_cancel"):

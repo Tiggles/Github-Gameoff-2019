@@ -1,41 +1,23 @@
 extends KinematicBody2D
 
-export var speed = 10
-var speed_factor = 500
+export (int) var speed = 75
 
 enum { MOVING_LEFT = -1, MOVING_RIGHT = 1}
-enum { MOVING_DOWN = -1, MOVING_UP = 1}
-export var default_moving_direction_x = MOVING_RIGHT
-var moving_direction_x = default_moving_direction_x
-var moving_direction_y = MOVING_DOWN
-var time_start = 0
-var time_now = 0
-
+export (int, -1, 1) var default_moving_direction_x = MOVING_LEFT
 
 var velocity = Vector2(0, 0)
+var floor_normal = Vector2(0, -1)
+onready var sprite = $Sprite
 
 func _ready():
-	var time_start = OS.get_unix_time()
+	velocity.x = default_moving_direction_x * speed
+	sprite.flip_h = default_moving_direction_x > 0
 
-func _physics_process(delta: float) -> void:
-	time_now = OS.get_unix_time()
-	var elapsed = time_now - time_start
-	var collision = move_and_slide(velocity * delta)
+func flip_the_bird():
+	sprite.flip_h = !sprite.flip_h
+	velocity.x *= -1
 
-	if (elapsed % 2 == 0):
-		var player = get_tree().get_root().get_node("Main").get_node("Player")
-		if (player.position.x < self.position.x):
-			$Sprite.flip_h = false
-			self.moving_direction_x = MOVING_LEFT
-		else:
-			$Sprite.flip_h = true
-			self.moving_direction_x = MOVING_RIGHT
-	
-		if (player.position.y < self.position.y):
-			self.moving_direction_y = MOVING_DOWN
-		else:
-			self.moving_direction_y = MOVING_UP
+func _physics_process(_delta: float) -> void:
+	var _next_pos = move_and_slide(velocity, floor_normal) # according to docs delta is used inside move_and_slide so no need to include it
+	if is_on_wall(): flip_the_bird()
 
-	
-		self.velocity.x = speed * speed_factor * moving_direction_x
-		self.velocity.y = speed * speed_factor * moving_direction_y

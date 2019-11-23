@@ -6,7 +6,6 @@ var Heart = preload("res://Heart.tscn")
 # var a = 2
 # var b = "text"
 
-var lifeCount = 0
 var scoreCounter = null
 var heart_shaped_box = null
 

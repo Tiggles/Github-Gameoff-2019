@@ -1,12 +1,16 @@
 extends Node2D
 
-export (PackedScene) var Heart
+class_name Main
+
+onready var hud = $CanvasLayer/HUD
+onready var gems = $Gems
+onready var player = $Player
 
 func _ready():
-	$CanvasLayer/HUD.update_life($Player.get_health())
+	hud.update_life($Player.health)
 
 func _on_Player_damage_taken(health: int) -> void:
-	$CanvasLayer/HUD.update_life(health)
+	hud.update_life(health)
 
-func _on_Player_gem_collected(gem_count: int) -> void:
-	$CanvasLayer/HUD.update_score(gem_count)
+func _on_Player_gem_collected(collected):
+	hud.update_score(collected)
