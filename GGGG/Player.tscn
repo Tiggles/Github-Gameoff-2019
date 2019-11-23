@@ -16,10 +16,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 0 ]
+"values": [ 0, 1, 2, 0 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -32,7 +32,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-hframes = 2
+hframes = 3
 
 [node name="DamageCountDown" type="Timer" parent="."]
 
