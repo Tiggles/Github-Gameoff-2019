@@ -117,5 +117,5 @@ tile_data = PoolIntArray( -458762, 0, 0, -458761, 0, 0, -458760, 0, 0, -458759, 
 __meta__ = {
 "_edit_lock_": true
 }
-[connection signal="damage_taken" from="Player" to="." method="_on_Player_damage_taken" binds= [ 1 ]]
+[connection signal="damage_taken" from="Player" to="." method="_on_Player_damage_taken"]
 [connection signal="gem_collected" from="Player" to="." method="_on_Player_gem_collected"]

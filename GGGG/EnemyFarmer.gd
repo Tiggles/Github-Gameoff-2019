@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name EnemyFarmer
+
 export var speed = 10
 var speed_factor = 100
 
