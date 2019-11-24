@@ -100,11 +100,12 @@ func handle_collisions() -> void:
 		# e.g. going by masks instead? Or connecting? Groups?
 		match collision.collider.name:
 			"EnemyFarmer":
-				health -= 1
-				can_take_damage = false
-				$DamageCountDown.start(-1)
-				emit_signal("damage_taken")
-				# Handle if enemy to left, throw player right and vice versa
+				if can_take_damage and health > 0:
+					health -= 1
+					$DamageCountDown.start(-1)
+					emit_signal("damage_taken", health)
+					can_take_damage = false
+
 
 func collected_gem():
 	gem_count += 1

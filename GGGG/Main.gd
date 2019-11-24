@@ -3,8 +3,7 @@ extends Node2D
 class_name Main
 
 onready var hud = $CanvasLayer/HUD
-onready var gems = $Gems
-onready var player = $Player
+
 
 func _ready():
 	hud.update_life($Player.health)
