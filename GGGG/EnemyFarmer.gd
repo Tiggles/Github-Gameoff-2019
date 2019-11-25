@@ -34,7 +34,3 @@ func _physics_process(delta: float) -> void:
 	if self.is_on_floor():
 		self.velocity.x = self.speed * self.moving_direction
 
-
-func _on_AvField_body_entered(body):
-	if body is Player:
-		body.got_rectd()

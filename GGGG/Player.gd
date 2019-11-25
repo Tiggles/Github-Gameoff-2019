@@ -122,3 +122,17 @@ func check_exit() -> void:
 
 func _on_DamageCountDown_timeout():
 	can_take_damage = true
+
+
+func _on_TopField_body_entered(body):
+	if body is EnemyFarmer:
+		got_rectd()
+
+
+func _on_BodyField_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_PogoStickField_body_entered(body):
+	if body is EnemyFarmer:
+		collected_gem()

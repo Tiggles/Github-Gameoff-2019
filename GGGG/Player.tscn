@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://pogo_character5.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11.3507, 31.7914 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 38.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "ground_collision"
@@ -22,12 +23,21 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 0 ]
 }
 
+[sub_resource type="CircleShape2D" id=6]
+radius = 1.61388
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 15.5814, 28.7386 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10.948, 3.44076 )
+
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2
 script = ExtResource( 1 )
 jump_factor = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2.87 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -38,4 +48,25 @@ hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ground_collision = SubResource( 2 )
+
+[node name="PogoStickField" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PogoStickField"]
+position = Vector2( 0.979839, 31.1821 )
+shape = SubResource( 6 )
+
+[node name="BodyField" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyField"]
+position = Vector2( 0.30892, 2.58331 )
+shape = SubResource( 4 )
+
+[node name="TopField" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopField"]
+position = Vector2( 0.330551, -29.5506 )
+shape = SubResource( 5 )
 [connection signal="timeout" from="DamageCountDown" to="." method="_on_DamageCountDown_timeout"]
+[connection signal="body_entered" from="PogoStickField" to="." method="_on_PogoStickField_body_entered"]
+[connection signal="body_entered" from="BodyField" to="." method="_on_BodyField_body_entered"]
+[connection signal="body_entered" from="TopField" to="." method="_on_TopField_body_entered"]
