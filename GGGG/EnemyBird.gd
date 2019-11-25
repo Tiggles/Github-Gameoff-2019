@@ -18,6 +18,6 @@ func flip_the_bird():
 	velocity.x *= -1
 
 func _physics_process(_delta: float) -> void:
-	var _next_pos = move_and_slide(velocity, floor_normal) # according to docs delta is used inside move_and_slide so no need to include it
+	var _linear_vel = move_and_slide(velocity, floor_normal) # according to docs delta is used inside move_and_slide so no need to include it
 	if is_on_wall(): flip_the_bird()
 

@@ -2,42 +2,39 @@ extends KinematicBody2D
 
 class_name EnemyFarmer
 
-export var speed = 10
-var speed_factor = 100
-
 enum { MOVING_LEFT = -1, IN_AIR = 0, MOVING_RIGHT = 1}
-export var default_moving_direction = MOVING_RIGHT
-var moving_direction = default_moving_direction
 
+export var speed = 200
+export (int, 0, 2000) var gravity = 600
+export (int, -1, 1) var default_moving_direction_x = MOVING_LEFT
+
+var moving_direction = default_moving_direction_x
+
+var gravity_vec = Vector2(0, 0)
 var velocity = Vector2(0, 0)
+var floorNormal = Vector2(0, -1) # floor is down
 
-# Called when the node enters the scene tree for the first time.
+onready var anime = $AnimatedSprite
+
+
 func _ready():
-	$AnimatedSprite.animation = "walk"
-	
-	if default_moving_direction == MOVING_LEFT:
-		$AnimatedSprite.flip_h = true
+	gravity_vec.y = gravity
+	anime.animation = "walk"
+	anime.flip_h = default_moving_direction_x < 0
 
 
 func _physics_process(delta: float) -> void:
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		if collision.normal.y < 0:
-			if self.moving_direction == IN_AIR:
-				self.moving_direction = self.default_moving_direction
-		else:
-			match self.moving_direction:
-				MOVING_RIGHT:
-					self.moving_direction = MOVING_LEFT
-					$AnimatedSprite.flip_h = true
-				MOVING_LEFT:
-					self.moving_direction = MOVING_RIGHT
-					$AnimatedSprite.flip_h = false
+	velocity += gravity_vec * delta
+	var _linear_velocity = move_and_slide(velocity, floorNormal)
 
-			
-		self.velocity.x = self.speed * self.speed_factor * self.moving_direction
-	else:
-		# In air
-		self.moving_direction = IN_AIR
-		self.velocity.x = 0
-		self.velocity.y = 50
+	if self.is_on_wall():
+		self.moving_direction = -1 * self.moving_direction
+		anime.flip_h = !anime.flip_h
+		
+	if self.is_on_floor():
+		self.velocity.x = self.speed * self.moving_direction
+
+
+func _on_AvField_body_entered(body):
+	if body is Player:
+		body.got_rectd()

@@ -99,15 +99,16 @@ func handle_collisions() -> void:
 		# FIXME There has to be more elegant way of handling collisions
 		# e.g. going by masks instead? Or connecting? Groups?
 		match collision.collider.name:
-			"EnemyFarmer":
-				if can_take_damage and health > 0:
-					health -= 1
-					$DamageCountDown.start(-1)
-					emit_signal("damage_taken", health)
-					can_take_damage = false
 			"TileMap":
 				$AnimationPlayer.play("ground_collision")
-
+				
+				
+func got_rectd():
+	if can_take_damage and health > 0:
+		health -= 1
+		$DamageCountDown.start(-1)
+		emit_signal("damage_taken", health)
+		can_take_damage = false
 
 func collected_gem():
 	gem_count += 1

@@ -84,9 +84,8 @@ position = Vector2( -99.4321, -138.796 )
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemyFarmer" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 187.462, 613.5 )
-motion/sync_to_physics = false
-default_moving_direction = -1
+position = Vector2( 206.594, -49.2067 )
+collision_mask = 2
 
 [node name="EnemyBird" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 584.816, 142.538 )

@@ -4,7 +4,6 @@ class_name Main
 
 onready var hud = $CanvasLayer/HUD
 
-
 func _ready():
 	hud.update_life($Player.health)
 
