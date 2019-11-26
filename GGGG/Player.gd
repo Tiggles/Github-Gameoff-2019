@@ -103,12 +103,16 @@ func handle_collisions() -> void:
 				$AnimationPlayer.play("ground_collision")
 				
 				
-func got_rectd():
+func got_rectd(leftOfEnemy: bool):
 	if can_take_damage and health > 0:
 		health -= 1
 		$DamageCountDown.start(-1)
 		emit_signal("damage_taken", health)
 		can_take_damage = false
+		if leftOfEnemy:
+			velocity = Vector2(-800, 80)
+		else:
+			velocity = Vector2(800, 80)
 
 func collected_gem():
 	gem_count += 1
@@ -126,13 +130,16 @@ func _on_DamageCountDown_timeout():
 
 func _on_TopField_body_entered(body):
 	if body is EnemyFarmer:
-		got_rectd()
+		pass
 
 
 func _on_BodyField_body_entered(body):
-	pass # Replace with function body.
+	if body is EnemyFarmer:
+		got_rectd(self.position.x < body.position.x)
+		print("body")
 
 
 func _on_PogoStickField_body_entered(body):
 	if body is EnemyFarmer:
+		print("pogo")
 		collected_gem()

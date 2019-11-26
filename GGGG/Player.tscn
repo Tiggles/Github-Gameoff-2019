@@ -23,11 +23,11 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 0 ]
 }
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 1.61388
+[sub_resource type="CircleShape2D" id=3]
+radius = 6.51373
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 15.5814, 28.7386 )
+extents = Vector2( 12.3678, 22.9998 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10.948, 3.44076 )
@@ -52,18 +52,21 @@ anims/ground_collision = SubResource( 2 )
 [node name="PogoStickField" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PogoStickField"]
-position = Vector2( 0.979839, 31.1821 )
-shape = SubResource( 6 )
+position = Vector2( 0.979839, 26.2765 )
+shape = SubResource( 3 )
 
 [node name="BodyField" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyField"]
-position = Vector2( 0.30892, 2.58331 )
+position = Vector2( 0.30892, -3.45433 )
 shape = SubResource( 4 )
 
 [node name="TopField" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopField"]
+visible = false
 position = Vector2( 0.330551, -29.5506 )
 shape = SubResource( 5 )
 [connection signal="timeout" from="DamageCountDown" to="." method="_on_DamageCountDown_timeout"]
